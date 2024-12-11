@@ -42,3 +42,7 @@ $routes->post('/transactions/store', 'Transactions::store');
 $routes->get('/transactions/edit/(:num)', 'Transactions::edit/$1');
 $routes->post('/transactions/update/(:num)', 'Transactions::update/$1');
 $routes->get('/transactions/delete/(:num)', 'Transactions::delete/$1');
+
+$routes->get('/login', 'Auth::login');
+$routes->post('/auth/loginSubmit', 'Auth::loginSubmit');
+$routes->get('/logout', 'Auth::logout');

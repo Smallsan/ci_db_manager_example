@@ -12,6 +12,15 @@ class Transactions extends Controller
         $model = new TransactionModel();
         $data['transactions'] = $model->findAll();
         
+        $chartData = [];
+        foreach ($data['transactions'] as $transaction) {
+            $chartData[] = [
+                'label' => $transaction['TransactionDate'],
+                'value' => $transaction['TotalPrice']
+            ];
+        }
+        $data['chartData'] = json_encode($chartData);
+
         echo view('transactions/index', $data);
     }
 

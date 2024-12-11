@@ -33,4 +33,45 @@
     </tbody>
 </table>
 
+<div class="mt-4">
+    <canvas id="transactionsChart" width="400" height="200"></canvas>
+</div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var ctx = document.getElementById('transactionsChart').getContext('2d');
+        var chartData = <?= $chartData ?>; // Pass PHP data to JavaScript
+
+        var labels = chartData.map(function(item) {
+            return item.label; // TransactionDate
+        });
+
+        var data = chartData.map(function(item) {
+            return item.value; // TotalPrice
+        });
+
+        var transactionsChart = new Chart(ctx, {
+            type: 'bar', // Change to the type of chart you want
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Total Price',
+                    data: data,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    });
+</script>
+
 <?= $this->endSection() ?>
